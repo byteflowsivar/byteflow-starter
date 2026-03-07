@@ -3,6 +3,22 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Theme variables base para @byteflow-ui */
+  --bf-canvas: #ffffff;
+  --bf-canvas-subtle: #f8fafc;
+  --bf-surface: #ffffff;
+  --bf-surface-border: #e2e8f0;
+  --bf-surface-hover: #f1f5f9;
+
+  --bf-text-primary: #0f172a;
+  /* Textos principales (títulos) */
+  --bf-text-secondary: #64748b;
+  /* Textos secundarios (descripciones) */
+  --bf-text-muted: #94a3b8;
+
+  --bf-accent: #2563eb;
+  /* Color principal de marca */
 }
 
 @theme inline {
@@ -16,6 +32,17 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+
+    /* Theme variables oscuro para @byteflow-ui */
+    --bf-canvas: #0f172a;
+    --bf-canvas-subtle: #1e293b;
+    --bf-surface: #1e293b;
+    --bf-surface-border: #334155;
+    --bf-surface-hover: #334155;
+
+    --bf-text-primary: #f8fafc;
+    --bf-text-secondary: #cbd5e1;
+    --bf-text-muted: #64748b;
   }
 }
 
