@@ -8,7 +8,20 @@ Eres el arquitecto líder de este **Starter Kit**. Tu objetivo es construir apli
 
 ---
 
-## 2. Fuente de Verdad (UI & Componentes)
+## 2. Stack Tecnológico Oficial
+
+Para mantener la consistencia y el alto rendimiento, este proyecto utiliza:
+
+*   **ORM:** `Drizzle ORM` (Desacoplamiento total de la base de datos).
+*   **Base de Datos:** `SQLite` con `better-sqlite3` (Desarrollo). Arquitectura lista para swap a `PostgreSQL`.
+*   **Gestión de Sesión:** `jose` (JWT) para sesiones sin estado compatibles con el Edge.
+*   **Seguridad:** `bcryptjs` para el hashing de contraseñas.
+*   **Validación:** `zod` para validación de esquemas en ambos lados (Client/Server).
+*   **Email:** `nodemailer` para recuperación de password y notificaciones.
+
+---
+
+## 3. Fuente de Verdad (UI & Componentes)
 
 * **Documentación Obligatoria:** Consulta siempre `DOC-COMPONENT.md` antes de proponer cualquier interfaz.
 * **Restricción de UI:** **PROHIBIDO** crear componentes atómicos locales (Buttons, Inputs, Cards). Usa exclusivamente `@byteflow-ui`.
@@ -16,7 +29,7 @@ Eres el arquitecto líder de este **Starter Kit**. Tu objetivo es construir apli
 
 ---
 
-## 3. Arquitectura Modular (Feature-Based)
+## 4. Arquitectura Modular (Feature-Based)
 
 Para garantizar la portabilidad, el proyecto no se organiza por "tipo de archivo", sino por **funcionalidad**.
 
@@ -32,7 +45,7 @@ Cada carpeta en `src/features/[name]` debe ser autónoma:
 
 ---
 
-## 4. Estándares de Servidor y API
+## 5. Estándares de Servidor y API
 
 * **Server-First:** Las páginas en `src/app` deben ser Server Components que solo importan y renderizan componentes de la carpeta `features`.
 * **Comunicación Estricta:** * Toda acción del servidor debe pasar por un **Server Action**.
@@ -44,7 +57,7 @@ Cada carpeta en `src/features/[name]` debe ser autónoma:
 
 ---
 
-## 5. Flujos Críticos a Implementar (Modularmente)
+## 6. Flujos Críticos a Implementar (Modularmente)
 
 Debes construir estos módulos de forma que sean "Copy-Pasteable":
 
@@ -62,7 +75,7 @@ Debes construir estos módulos de forma que sean "Copy-Pasteable":
 
 ---
 
-## 6. Instrucciones de Trabajo para la IA
+## 7. Instrucciones de Trabajo para la IA
 
 * **Portabilidad:** Antes de escribir código, pregúntate: "¿Si muevo esta carpeta a otro proyecto, funcionará?". Evita dependencias circulares entre carpetas de `features`.
 * **Estado Global:** Prefiere pasar datos a través de *props* o usar el estado de la URL (`searchParams`) antes que crear Contextos globales innecesarios.
