@@ -6,9 +6,9 @@ import { Button } from '@byteflow-ui/button';
 import { Input } from '@byteflow-ui/input';
 import { Alert, AlertTitle, AlertDescription } from '@byteflow-ui/alert';
 import Link from 'next/link';
-import '@byteflow-ui/button/dist/index.css';
-import '@byteflow-ui/input/dist/index.css';
-import '@byteflow-ui/alert/dist/index.css';
+import '@byteflow-ui/button/index.css';
+import '@byteflow-ui/input/index.css';
+import '@byteflow-ui/alert/index.css';
 
 export function LoginForm() {
     const [state, action, isPending] = useActionState(loginAction, undefined);

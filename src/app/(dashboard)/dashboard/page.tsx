@@ -7,8 +7,8 @@ import {
     CardContent
 } from '@byteflow-ui/card';
 import { Badge } from '@byteflow-ui/badge';
-import '@byteflow-ui/card/dist/index.css';
-import '@byteflow-ui/badge/dist/index.css';
+import '@byteflow-ui/card/index.css';
+import '@byteflow-ui/badge/index.css';
 
 export default async function DashboardPage() {
     const session = await getSession();
