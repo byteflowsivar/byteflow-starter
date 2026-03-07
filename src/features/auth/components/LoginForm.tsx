@@ -28,6 +28,7 @@ export function LoginForm() {
             )}
 
             <Input
+                id="login-email"
                 name="email"
                 type="email"
                 label="Correo electrónico"
@@ -37,6 +38,7 @@ export function LoginForm() {
             />
 
             <Input
+                id="login-password"
                 name="password"
                 type="password"
                 label="Contraseña"

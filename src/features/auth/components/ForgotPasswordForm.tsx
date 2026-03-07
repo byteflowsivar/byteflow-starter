@@ -30,6 +30,7 @@ export function ForgotPasswordForm() {
             {!state?.success && (
                 <>
                     <Input
+                        id="forgot-email"
                         name="email"
                         type="email"
                         label="Correo electrónico"

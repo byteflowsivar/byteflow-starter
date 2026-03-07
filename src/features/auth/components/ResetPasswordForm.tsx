@@ -59,6 +59,7 @@ export function ResetPasswordForm() {
             {!state?.success && (
                 <>
                     <Input
+                        id="reset-password"
                         name="password"
                         type="password"
                         label="Nueva contraseña"
@@ -68,6 +69,7 @@ export function ResetPasswordForm() {
                     />
 
                     <Input
+                        id="reset-confirm-password"
                         name="confirmPassword"
                         type="password"
                         label="Confirmar contraseña"
