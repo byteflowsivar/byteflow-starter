@@ -21,7 +21,21 @@ Para mantener la consistencia y el alto rendimiento, este proyecto utiliza:
 
 ---
 
-## 3. Fuente de Verdad (UI & Componentes)
+## 3. Developer Friendly
+
+Todo el código generado en este proyecto debe ser comprensible, mantenible y fácil de extender por cualquier desarrollador. Se aplican los siguientes principios:
+
+*   **Nombres descriptivos:** Variables, funciones y archivos deben comunicar su propósito sin necesidad de comentarios adicionales. Usa nombres explícitos como `loginAction`, `authService`, `SessionPayload`.
+*   **Errores claros:** Los `ActionResult` siempre deben retornar un `message` legible por el usuario final. Nunca exponer stack traces ni mensajes de sistema.
+*   **Single Responsibility:** Cada archivo debe tener una única responsabilidad. Las `actions` orquestan, los `services` consultan la base de datos, los `schemas` validan.
+*   **Convenciones consistentes:** Sufijos claros: `*.action.ts`, `*.service.ts`, `*.schema.ts`, `*.types.ts`, `*Form.tsx`. Esto hace el proyecto navegable sin leer el código.
+*   **Sin magia oculta:** Evitar abstracciones innecesarias. Preferir código explícito sobre código "inteligente".
+*   **Comentarios de intención:** Comentar el *por qué* de una decisión no obvia (ej: `// Anti-enumeración: siempre retornamos success aunque el email no exista`).
+*   **Feedback visual inmediato:** Toda operación con tiempo de espera debe mostrar un estado de carga visible (`isLoading`, `isPending`).
+
+---
+
+## 4. Fuente de Verdad (UI & Componentes)
 
 * **Documentación Obligatoria:** Consulta siempre `DOC-COMPONENT.md` antes de proponer cualquier interfaz.
 * **Restricción de UI:** **PROHIBIDO** crear componentes atómicos locales (Buttons, Inputs, Cards). Usa exclusivamente `@byteflow-ui`.

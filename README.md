@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Byteflow Starter Kit
 
-## Getting Started
+Panel de administración modular construido con **Next.js 16 (App Router)** y la librería de componentes premium **@byteflow-ui**.
 
-First, run the development server:
+---
+
+## 🚀 Inicio Rápido
+
+### 1. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 2. Configurar variables de entorno
+
+Copia el archivo de ejemplo y ajusta los valores:
+
+```bash
+cp .env.local.example .env.local
+```
+
+> El archivo `.env.local` ya incluye una configuración funcional para desarrollo local.
+
+### 3. Poblar la base de datos
+
+```bash
+npx tsx db/seed.ts
+```
+
+### 4. Levantar el servidor de desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔐 Credenciales de Acceso (Desarrollador)
 
-## Learn More
+Una vez ejecutado el script de seed, el siguiente usuario administrador estará disponible:
 
-To learn more about Next.js, take a look at the following resources:
+| Campo    | Valor                  |
+|----------|------------------------|
+| Email    | `admin@byteflow.dev`   |
+| Password | `admin123`             |
+| Rol      | `admin`                |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> ⚠️ **Importante:** Cambia estas credenciales antes de cualquier despliegue a producción. Puedes modificar los valores en `db/seed.ts`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🗂️ Estructura del Proyecto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```text
+src/
+├── app/                    # Rutas y layouts (puentes a features)
+│   ├── (auth)/             # Grupo de rutas públicas
+│   │   ├── login/
+│   │   ├── forgot-password/
+│   │   └── reset-password/
+│   └── (dashboard)/        # Grupo de rutas protegidas
+│       └── dashboard/
+├── features/               # Módulos portables
+│   └── auth/
+│       ├── actions/        # Server Actions (controladores)
+│       ├── components/     # Formularios con @byteflow-ui
+│       ├── schemas/        # Validaciones Zod
+│       ├── services/       # Lógica de negocio / DB
+│       └── types/          # TypeScript types
+├── db/                     # Schema y cliente de Drizzle ORM
+├── lib/                    # Utilidades globales (session, password)
+└── middleware.ts            # Protección de rutas
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🛠️ Stack Tecnológico
+
+| Tecnología | Uso |
+|---|---|
+| Next.js 16 | Framework (App Router) |
+| @byteflow-ui | Librería de componentes UI |
+| Drizzle ORM + SQLite | Base de datos (swappable a PostgreSQL) |
+| jose | JWT para sesiones sin estado |
+| bcryptjs | Hashing seguro de contraseñas |
+| Zod | Validación de esquemas |
+| nodemailer | Envío de correos |
+
+---
+
+## 🔄 Migración a PostgreSQL
+
+Solo necesitas modificar `src/db/index.ts`. El resto del código no cambia:
+
+```typescript
+// Reemplazar esto:
+import Database from 'better-sqlite3';
+import { drizzle } from 'drizzle-orm/better-sqlite3';
+
+// Por esto:
+import { Pool } from 'pg';
+import { drizzle } from 'drizzle-orm/node-postgres';
+```
+
+---
+
+## 📚 Documentación de Componentes
+
+Consulta `DOC-COMPONENT.md` para la referencia completa de la API de `@byteflow-ui`.

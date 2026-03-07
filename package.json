@@ -9,6 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@byteflow-ui/alert": "^1.0.0",
+    "@byteflow-ui/badge": "^1.0.0",
+    "@byteflow-ui/button": "^1.0.0",
+    "@byteflow-ui/card": "^1.0.0",
+    "@byteflow-ui/input": "^1.0.0",
+    "@byteflow-ui/sidebar": "^1.0.0",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.6.2",
     "drizzle-orm": "^0.45.1",
