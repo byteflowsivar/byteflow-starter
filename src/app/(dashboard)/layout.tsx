@@ -11,7 +11,7 @@ import {
 } from '@byteflow-ui/sidebar';
 import { logoutAction } from '@/features/auth/actions/logout.action';
 import { Button } from '@byteflow-ui/button';
-import '@byteflow-ui/sidebar/dist/index.css';
+import '@/app/(dashboard)/sidebar.css';   // reemplaza @byteflow-ui/sidebar/dist/index.css (incompatible con Turbopack)
 import '@byteflow-ui/button/dist/index.css';
 
 export default async function DashboardLayout({
