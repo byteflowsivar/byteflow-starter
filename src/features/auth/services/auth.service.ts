@@ -54,7 +54,7 @@ export const authService = {
                 )
             );
 
-        if (!record || record.expiresAt < new Date()) {
+        if (!record || new Date(record.expiresAt) < new Date()) {
             return null;
         }
 
