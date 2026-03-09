@@ -1,10 +1,16 @@
+import { ThemeToggle } from '@/components/ThemeToggle';
+
 export default function AuthLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
     return (
-        <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white dark:bg-slate-950">
+        <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white dark:bg-slate-950 relative">
+            {/* Theme Toggle in Top Left */}
+            <div className="absolute top-6 left-6 z-50">
+                <ThemeToggle />
+            </div>
             {/* Brand Section - Visible on Desktop */}
             <div className="hidden lg:flex flex-col justify-between p-12 bg-primary relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-primary-dark/90 z-0" />
