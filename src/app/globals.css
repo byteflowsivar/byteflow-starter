@@ -1,4 +1,13 @@
 @import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+@theme inline {
+  --color-primary: var(--bf-accent);
+  --color-primary-dark: #1e40af;
+  --color-primary-foreground: #ffffff;
+
+  --variant-dark: &:where(.dark, .dark *);
+}
 
 :root {
   --background: #ffffff;
@@ -12,28 +21,13 @@
   --bf-surface-hover: #f1f5f9;
 
   --bf-text-primary: #0f172a;
-  /* Textos principales (títulos) */
   --bf-text-secondary: #64748b;
-  /* Textos secundarios (descripciones) */
   --bf-text-muted: #94a3b8;
 
   --bf-accent: #2563eb;
-  /* Color principal de marca */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
-  --color-primary: var(--bf-accent);
-  --color-primary-dark: #1e40af;
-  --color-primary-foreground: #ffffff;
-}
-
-
-
+/* Tema Oscuro forzado via clase .dark (Controlado por el ThemeToggle) */
 .dark {
   --background: #0a0a0a;
   --foreground: #ededed;
