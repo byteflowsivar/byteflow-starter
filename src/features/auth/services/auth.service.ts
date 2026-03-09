@@ -1,6 +1,6 @@
 import { db } from '@/db';
 import { users, passwordResetTokens } from '@/db/schema';
-import { eq, and } from 'drizzle-orm';
+import { eq, and, isNull } from 'drizzle-orm';
 import { comparePassword, hashPassword } from '@/lib/password';
 import { AuthUser } from '../types';
 import crypto from 'crypto';
@@ -50,11 +50,21 @@ export const authService = {
             .where(
                 and(
                     eq(passwordResetTokens.token, token),
-                    eq(passwordResetTokens.usedAt, null as any) // usedAt is null
+                    isNull(passwordResetTokens.usedAt)
                 )
             );
 
-        if (!record || new Date(record.expiresAt) < new Date()) {
+        if (!record) return null;
+
+        // SQLite stores timestamps in seconds, JS uses milliseconds.
+        // If the value is small (seconds), we multiply by 1000.
+        const expiresAtMs = record.expiresAt instanceof Date
+            ? record.expiresAt.getTime()
+            : (typeof record.expiresAt === 'number' && record.expiresAt < 10000000000
+                ? record.expiresAt * 1000
+                : Number(record.expiresAt));
+
+        if (expiresAtMs < Date.now()) {
             return null;
         }
 
