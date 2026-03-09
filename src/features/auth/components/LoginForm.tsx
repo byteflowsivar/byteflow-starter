@@ -14,56 +14,71 @@ export function LoginForm() {
     const [state, action, isPending] = useActionState(loginAction, undefined);
 
     return (
-        <form action={action} className="space-y-4 w-full max-w-sm mx-auto p-6 bg-white rounded-xl shadow-lg border border-slate-100">
-            <div className="text-center space-y-2 mb-6">
-                <h1 className="text-2xl font-bold text-slate-900">Bienvenido de nuevo</h1>
-                <p className="text-slate-500 text-sm">Ingresa tus credenciales para acceder al panel</p>
+        <form action={action} className="space-y-6 w-full max-w-sm mx-auto p-4 lg:p-0">
+            <div className="space-y-2 text-left lg:text-left">
+                <h1 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+                    Acceder
+                </h1>
+                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">
+                    Ingresa tus credenciales para continuar al panel administrativo
+                </p>
             </div>
 
             {state?.message && !state.success && (
-                <Alert variant="error">
-                    <AlertTitle>Error de autenticación</AlertTitle>
-                    <AlertDescription>{state.message}</AlertDescription>
-                </Alert>
+                <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+                    <Alert variant="error">
+                        <AlertTitle>Error de acceso</AlertTitle>
+                        <AlertDescription>{state.message}</AlertDescription>
+                    </Alert>
+                </div>
             )}
 
-            <Input
-                id="login-email"
-                name="email"
-                type="email"
-                label="Correo electrónico"
-                placeholder="admin@byteflow.dev"
-                required
-                error={state?.errors?.email?.[0]}
-            />
+            <div className="space-y-4">
+                <Input
+                    id="login-email"
+                    name="email"
+                    type="email"
+                    label="Correo electrónico"
+                    placeholder="ejemplo@byteflow.dev"
+                    required
+                    error={state?.errors?.email?.[0]}
+                    className="dark:bg-slate-900 dark:border-slate-800 dark:text-white"
+                />
 
-            <Input
-                id="login-password"
-                name="password"
-                type="password"
-                label="Contraseña"
-                placeholder="••••••••"
-                required
-                error={state?.errors?.password?.[0]}
-            />
-
-            <div className="flex items-center justify-end">
-                <Link
-                    href="/forgot-password"
-                    className="text-sm font-medium text-primary hover:underline"
-                >
-                    ¿Olvidaste tu contraseña?
-                </Link>
+                <div className="space-y-1">
+                    <Input
+                        id="login-password"
+                        name="password"
+                        type="password"
+                        label="Contraseña"
+                        placeholder="••••••••"
+                        required
+                        error={state?.errors?.password?.[0]}
+                        className="dark:bg-slate-900 dark:border-slate-800 dark:text-white"
+                    />
+                    <div className="flex justify-end">
+                        <Link
+                            href="/forgot-password"
+                            className="text-xs font-semibold text-primary hover:text-primary-dark transition-colors"
+                        >
+                            ¿Olvidaste tu contraseña?
+                        </Link>
+                    </div>
+                </div>
             </div>
 
             <Button
                 type="submit"
                 variant="primary"
-                className="w-full"
+                className="w-full h-11 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] transition-all"
                 isLoading={isPending}
             >
                 Iniciar sesión
             </Button>
+
+            <p className="text-center text-xs text-slate-400 dark:text-slate-500 pt-4">
+                Al continuar, aceptas nuestros <Link href="/terms" className="underline hover:text-slate-600 dark:hover:text-slate-300">Términos de Servicio</Link> y <Link href="/privacy" className="underline hover:text-slate-600 dark:hover:text-slate-300">Política de Privacidad</Link>.
+            </p>
         </form>
     );
 }

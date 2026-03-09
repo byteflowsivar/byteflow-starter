@@ -26,6 +26,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-primary: var(--bf-accent);
+  --color-primary-dark: #1e40af;
+  --color-primary-foreground: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
