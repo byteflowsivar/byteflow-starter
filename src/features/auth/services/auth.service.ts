@@ -77,12 +77,12 @@ export const authService = {
 
         const passwordHash = await hashPassword(newPassword);
 
-        await db.transaction(async (tx) => {
+        db.transaction((tx) => {
             // Update user password
-            await tx.update(users).set({ passwordHash }).where(eq(users.id, record.userId));
+            tx.update(users).set({ passwordHash }).where(eq(users.id, record.userId)).run();
 
             // Mark token as used
-            await tx.update(passwordResetTokens).set({ usedAt: new Date() }).where(eq(passwordResetTokens.id, record.id));
+            tx.update(passwordResetTokens).set({ usedAt: new Date() }).where(eq(passwordResetTokens.id, record.id)).run();
         });
 
         return true;
