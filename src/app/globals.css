@@ -32,23 +32,7 @@
   --color-primary-foreground: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
 
-    /* Theme variables oscuro para @byteflow-ui */
-    --bf-canvas: #0f172a;
-    --bf-canvas-subtle: #1e293b;
-    --bf-surface: #1e293b;
-    --bf-surface-border: #334155;
-    --bf-surface-hover: #334155;
-
-    --bf-text-primary: #f8fafc;
-    --bf-text-secondary: #cbd5e1;
-    --bf-text-muted: #64748b;
-  }
-}
 
 .dark {
   --background: #0a0a0a;
