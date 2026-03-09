@@ -7,8 +7,8 @@ export default function AuthLayout({
 }) {
     return (
         <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white dark:bg-slate-950 relative">
-            {/* Theme Toggle in Top Left */}
-            <div className="absolute top-6 left-6 z-50">
+            {/* Theme Toggle in Top Right */}
+            <div className="absolute top-6 right-6 z-50">
                 <ThemeToggle />
             </div>
             {/* Brand Section - Visible on Desktop */}
