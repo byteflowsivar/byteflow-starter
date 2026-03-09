@@ -19,16 +19,17 @@ export async function forgotPasswordAction(prevState: any, formData: FormData): 
     const { email } = validatedFields.data;
     const token = await authService.createResetToken(email);
 
-    if (!token) {
-        // We return success even if email not found to avoid user enumeration
-        return {
-            success: true,
-            message: 'Si el correo existe, se ha enviado un enlace de recuperación.',
-        };
-    }
+    if (token) {
+        const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${token}`;
+        const { emailService } = await import('@/lib/email');
+        const html = emailService.generateResetPasswordTemplate(resetUrl);
 
-    // TODO: Implement actual email sending with nodemailer
-    console.log(`Reset Token for ${email}: ${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${token}`);
+        await emailService.sendEmail({
+            to: email,
+            subject: 'Recuperar acceso - Byteflow',
+            html,
+        });
+    }
 
     return {
         success: true,
