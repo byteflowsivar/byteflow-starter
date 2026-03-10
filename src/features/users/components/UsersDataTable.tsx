@@ -16,6 +16,7 @@ import '@byteflow-ui/badge/index.css';
 import '@byteflow-ui/button/index.css';
 
 import { useState, useEffect } from 'react';
+import { PageHeader } from '@/components/layout/PageHeader';
 
 interface UsersDataTableProps {
     users: UserListItem[];
@@ -139,29 +140,30 @@ export function UsersDataTable({ users }: UsersDataTableProps) {
                     searchKey="name"
                 >
                     {/* Header Section from screenshot */}
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-                        <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-                            Gestión de Usuarios
-                        </h1>
-                        <div className="flex items-center gap-3 w-full sm:w-auto">
-                            <Link href="/admin/users/new">
-                                <Button
-                                    variant="primary"
-                                    className="h-12 px-6 rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all font-bold whitespace-nowrap"
-                                    startIcon={<UserPlus size={18} />}
-                                >
-                                    Nuevo Usuario
-                                </Button>
-                            </Link>
-                            <div className="w-full sm:w-[280px]">
-                                <DataTableAny.Toolbar
-                                    className="[&_input]:h-12 [&_input]:px-6 [&_input]:rounded-xl [&_input]:border-slate-200 dark:[&_input]:border-slate-800 [&_input]:bg-white dark:[&_input]:bg-slate-900 !p-0"
-                                    placeholder="Buscar por name..."
-                                    id="search-input-users"
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    <PageHeader
+                        title="Gestión de Usuarios"
+                        description="Administra las cuentas de acceso a la plataforma de forma centralizada."
+                        actions={
+                            <>
+                                <Link href="/admin/users/new">
+                                    <Button
+                                        variant="primary"
+                                        className="h-12 px-6 rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all font-bold whitespace-nowrap"
+                                        startIcon={<UserPlus size={18} />}
+                                    >
+                                        Nuevo Usuario
+                                    </Button>
+                                </Link>
+                                <div className="w-full sm:w-[280px]">
+                                    <DataTableAny.Toolbar
+                                        className="[&_input]:h-12 [&_input]:px-6 [&_input]:rounded-xl [&_input]:border-slate-200 dark:[&_input]:border-slate-800 [&_input]:bg-white dark:[&_input]:bg-slate-900 !p-0"
+                                        placeholder="Buscar por name..."
+                                        id="search-input-users"
+                                    />
+                                </div>
+                            </>
+                        }
+                    />
 
                     {/* Table implementation */}
                     <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
