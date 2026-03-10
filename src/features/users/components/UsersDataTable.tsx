@@ -74,13 +74,13 @@ export function UsersDataTable({ users }: UsersDataTableProps) {
     const DataTableAny = DataTable as any;
 
     return (
-        <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-300">
+        <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-300 overflow-hidden">
             <DataTableAny
                 data={users}
                 columns={columns}
                 pageSize={10}
                 searchKey="name"
-                className="p-4"
+                className="w-full !p-0 [&_.bf-data-table__search-wrapper]:p-6 [&_.bf-data-table__pagination-wrapper]:p-6 [&_.bf-table-container]:border-t [&_.bf-table-container]:border-slate-100 dark:[&_.bf-table-container]:border-slate-800 [&_table]:w-full"
             />
         </div>
     );

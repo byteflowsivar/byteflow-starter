@@ -25,10 +25,10 @@ export default async function UsersPage() {
                     <Button
                         variant="primary"
                         size="md"
-                        className="h-11 px-6 font-bold shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95 transition-all flex items-center gap-2"
+                        className="h-11 px-6 font-bold shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
                     >
-                        <UserPlus size={18} strokeWidth={2.5} />
-                        Crear nuevo usuario
+                        <UserPlus size={18} strokeWidth={2.5} className="flex-shrink-0" />
+                        <span>Crear nuevo usuario</span>
                     </Button>
                 </Link>
             </div>
