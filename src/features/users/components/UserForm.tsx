@@ -12,7 +12,7 @@ import '@byteflow-ui/button/index.css';
 import '@byteflow-ui/input/index.css';
 import '@byteflow-ui/label/index.css';
 import '@byteflow-ui/alert/index.css';
-import '@byteflow-ui/combobox/dist/index.css';
+import '@byteflow-ui/combobox/index.css';
 
 interface UserFormProps {
     user?: UserListItem | null;
@@ -68,7 +68,7 @@ export function UserForm({ user, action }: UserFormProps) {
                         <Combobox
                             options={roleOptions}
                             value={selectedRole}
-                            onValueChange={setSelectedRole}
+                            onValueChange={(val) => setSelectedRole(val as 'user' | 'admin')}
                             placeholder="Selecciona un rol"
                             className="w-full h-11 dark:bg-slate-900 dar:border-slate-800 dark:text-white"
                         />

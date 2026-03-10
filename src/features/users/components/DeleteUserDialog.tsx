@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@byteflow-ui/dialog';
 import { Button } from '@byteflow-ui/button';
 import { deleteUserAction } from '../actions/delete-user.action';
-import '@byteflow-ui/dialog/dist/index.css';
+import '@byteflow-ui/dialog/index.css';
 import '@byteflow-ui/button/index.css';
 
 interface DeleteUserDialogProps {

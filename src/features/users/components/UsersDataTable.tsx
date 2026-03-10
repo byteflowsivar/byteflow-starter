@@ -7,9 +7,9 @@ import { UserListItem } from '../types';
 import { DeleteUserDialog } from './DeleteUserDialog';
 import { Edit, Trash2 } from 'lucide-react';
 import Link from 'next/link';
-import '@byteflow-ui/data-table/dist/index.css';
-import '@byteflow-ui/badge/dist/index.css';
-import '@byteflow-ui/button/dist/index.css';
+import '@byteflow-ui/data-table/index.css';
+import '@byteflow-ui/badge/index.css';
+import '@byteflow-ui/button/index.css';
 
 interface UsersDataTableProps {
     users: UserListItem[];
@@ -71,11 +71,13 @@ export function UsersDataTable({ users }: UsersDataTableProps) {
         }
     ];
 
+    const DataTableAny = DataTable as any;
+
     return (
         <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-300">
-            <DataTable
-                data={users as any}
-                columns={columns as any}
+            <DataTableAny
+                data={users}
+                columns={columns}
                 pageSize={10}
                 searchKey="name"
                 className="p-4"
