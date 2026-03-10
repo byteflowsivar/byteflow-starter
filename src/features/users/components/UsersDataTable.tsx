@@ -5,7 +5,7 @@ import { Badge } from '@byteflow-ui/badge';
 import { Button } from '@byteflow-ui/button';
 import { UserListItem } from '../types';
 import { DeleteUserDialog } from './DeleteUserDialog';
-import { Edit, Trash2, UserPlus, Copy, Check } from 'lucide-react';
+import { Edit, Trash2, UserPlus, Copy, Check, Users } from 'lucide-react';
 import Link from 'next/link';
 
 // Import CSS and dependencies as required by v1.0.2
@@ -143,6 +143,7 @@ export function UsersDataTable({ users }: UsersDataTableProps) {
                     <PageHeader
                         title="Gestión de Usuarios"
                         description="Administra las cuentas de acceso a la plataforma de forma centralizada."
+                        icon={<Users size={28} />}
                         actions={
                             <>
                                 <Link href="/admin/users/new">

@@ -2,6 +2,7 @@
 
 import { UserForm } from '@/features/users/components/UserForm';
 import { createUserAction } from '@/features/users/actions/create-user.action';
+import { UserPlus } from 'lucide-react';
 import { PageHeader } from '@/components/layout/PageHeader';
 
 export default function NewUserPage() {
@@ -10,6 +11,7 @@ export default function NewUserPage() {
             <PageHeader
                 title="Nuevo usuario"
                 description="Crea una nueva cuenta de acceso. El usuario recibirá sus credenciales por el canal oficial una vez activado."
+                icon={<UserPlus size={28} />}
                 backLink={{
                     href: "/admin/users",
                     label: "Volver a la lista"

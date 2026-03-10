@@ -11,7 +11,7 @@ interface PageHeaderProps {
         href: string;
         label: string;
     };
-    icon?: ReactNode;
+    icon: ReactNode;
     actions?: ReactNode;
 }
 
