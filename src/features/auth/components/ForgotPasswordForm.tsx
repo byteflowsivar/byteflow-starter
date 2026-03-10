@@ -59,7 +59,7 @@ export function ForgotPasswordForm() {
 
             <div className="text-center pt-2">
                 <Link
-                    href="/login"
+                    href="/admin/login"
                     className="text-xs font-semibold text-primary hover:text-primary-dark transition-colors"
                 >
                     Volver al inicio de sesión

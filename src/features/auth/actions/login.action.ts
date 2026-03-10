@@ -30,5 +30,5 @@ export async function loginAction(prevState: any, formData: FormData): Promise<A
 
     await createSession(user.id, user.email, user.role);
 
-    redirect('/dashboard');
+    redirect('/admin/dashboard');
 }

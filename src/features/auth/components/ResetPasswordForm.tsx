@@ -20,7 +20,7 @@ export function ResetPasswordForm() {
     useEffect(() => {
         if (state?.success) {
             const timer = setTimeout(() => {
-                router.push('/login');
+                router.push('/admin/login');
             }, 3000);
             return () => clearTimeout(timer);
         }
@@ -45,7 +45,7 @@ export function ResetPasswordForm() {
 
                 <div className="text-center pt-2">
                     <Link
-                        href="/login"
+                        href="/admin/login"
                         className="text-xs font-semibold text-primary hover:text-primary-dark transition-colors"
                     >
                         Volver al inicio de sesión
@@ -114,7 +114,7 @@ export function ResetPasswordForm() {
 
             <div className="text-center pt-2">
                 <Link
-                    href="/login"
+                    href="/admin/login"
                     className="text-xs font-semibold text-primary hover:text-primary-dark transition-colors"
                 >
                     Volver al inicio de sesión

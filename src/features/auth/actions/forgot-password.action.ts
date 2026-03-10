@@ -20,7 +20,7 @@ export async function forgotPasswordAction(prevState: any, formData: FormData): 
     const token = await authService.createResetToken(email);
 
     if (token) {
-        const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${token}`;
+        const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/admin/reset-password?token=${token}`;
         const { emailService } = await import('@/lib/email');
         const html = emailService.generateResetPasswordTemplate(resetUrl);
 
