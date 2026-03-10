@@ -13,7 +13,10 @@ import '@byteflow-ui/button/index.css';
 import '@byteflow-ui/input/index.css';
 import '@byteflow-ui/label/index.css';
 import '@byteflow-ui/alert/index.css';
+import '@byteflow-ui/popover/index.css';
+import '@byteflow-ui/command/index.css';
 import '@byteflow-ui/combobox/index.css';
+// Note: Combobox depends internally on Popover and Command for its operation and look.
 
 interface UserFormProps {
     user?: UserListItem | null;
@@ -71,7 +74,7 @@ export function UserForm({ user, action }: UserFormProps) {
                             value={selectedRole}
                             onValueChange={(val) => setSelectedRole(val as 'user' | 'admin')}
                             placeholder="Selecciona un rol"
-                            className="w-full h-11 dark:bg-slate-900 dar:border-slate-800 dark:text-white"
+                            className="w-full h-11 dark:bg-slate-900 dark:border-slate-800 dark:text-white"
                         />
                         <input type="hidden" name="role" value={selectedRole} />
                         {state?.errors?.role && (
