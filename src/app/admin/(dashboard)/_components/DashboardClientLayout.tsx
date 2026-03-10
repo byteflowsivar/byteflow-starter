@@ -13,6 +13,8 @@ import {
 import { Button } from '@byteflow-ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { logoutAction } from '@/features/auth/actions/logout.action';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import {
     LayoutDashboard,
     BarChart3,
@@ -35,18 +37,21 @@ interface DashboardClientLayoutProps {
 // Subcomponente interno para manejar los items con acceso al contexto del Sidebar
 function SidebarNavigation() {
     const { isCollapsed } = useSidebar();
+    const pathname = usePathname();
 
     return (
         <SidebarContent>
             <SidebarGroup label={isCollapsed ? "" : "Principal"} className="dark:text-slate-400">
-                <SidebarItem
-                    active
-                    icon={<LayoutDashboard size={20} />}
-                    className="dark:bg-primary/10 dark:text-primary"
-                    title={isCollapsed ? "Panel General" : ""}
-                >
-                    Panel General
-                </SidebarItem>
+                <Link href="/admin/dashboard">
+                    <SidebarItem
+                        active={pathname === '/admin/dashboard'}
+                        icon={<LayoutDashboard size={20} />}
+                        className={`dark:hover:bg-slate-800 ${pathname === '/admin/dashboard' ? 'dark:bg-primary/10 dark:text-primary' : 'dark:text-slate-300'}`}
+                        title={isCollapsed ? "Panel General" : ""}
+                    >
+                        Panel General
+                    </SidebarItem>
+                </Link>
                 <SidebarItem
                     icon={<BarChart3 size={20} />}
                     className="dark:text-slate-300 dark:hover:bg-slate-800"
@@ -54,13 +59,16 @@ function SidebarNavigation() {
                 >
                     Estadísticas
                 </SidebarItem>
-                <SidebarItem
-                    icon={<Users size={20} />}
-                    className="dark:text-slate-300 dark:hover:bg-slate-800"
-                    title={isCollapsed ? "Usuarios" : ""}
-                >
-                    Usuarios
-                </SidebarItem>
+                <Link href="/admin/users">
+                    <SidebarItem
+                        active={pathname.startsWith('/admin/users')}
+                        icon={<Users size={20} />}
+                        className={`dark:hover:bg-slate-800 ${pathname.startsWith('/admin/users') ? 'dark:bg-primary/10 dark:text-primary' : 'dark:text-slate-300'}`}
+                        title={isCollapsed ? "Usuarios" : ""}
+                    >
+                        Usuarios
+                    </SidebarItem>
+                </Link>
             </SidebarGroup>
 
             <SidebarGroup label={isCollapsed ? "" : "Administración"} className="dark:text-slate-400">
