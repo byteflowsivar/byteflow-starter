@@ -10,6 +10,7 @@ import {
     SidebarToggle
 } from '@byteflow-ui/sidebar';
 import { Button } from '@byteflow-ui/button';
+import { LogOut } from 'lucide-react';
 import { logoutAction } from '@/features/auth/actions/logout.action';
 import '@byteflow-ui/sidebar/index.css';
 import '@byteflow-ui/button/index.css';
@@ -48,7 +49,12 @@ export function DashboardSidebar({ email, role }: DashboardSidebarProps) {
                         <p className="text-sm font-medium text-slate-700 truncate">{email}</p>
                     </div>
                     <form action={logoutAction}>
-                        <Button type="submit" variant="ghost" className="w-full justify-start text-error">
+                        <Button
+                            type="submit"
+                            variant="ghost"
+                            className="w-full justify-start text-error font-semibold"
+                            startIcon={<LogOut size={18} />}
+                        >
                             Cerrar sesión
                         </Button>
                     </form>

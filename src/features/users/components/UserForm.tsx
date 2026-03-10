@@ -8,6 +8,7 @@ import { Alert, AlertTitle, AlertDescription } from '@byteflow-ui/alert';
 import { Combobox, ComboboxOption } from '@byteflow-ui/combobox';
 import { UserListItem, ActionResult } from '../types';
 import Link from 'next/link';
+import { Save, X } from 'lucide-react';
 import '@byteflow-ui/button/index.css';
 import '@byteflow-ui/input/index.css';
 import '@byteflow-ui/label/index.css';
@@ -132,11 +133,16 @@ export function UserForm({ user, action }: UserFormProps) {
                     variant="primary"
                     className="h-11 px-8 font-bold shadow-lg shadow-primary/20 active:scale-95 transition-all"
                     isLoading={isPending}
+                    startIcon={<Save size={18} />}
                 >
                     {user ? 'Guardar cambios' : 'Crear usuario'}
                 </Button>
                 <Link href="/admin/users">
-                    <Button variant="ghost" className="h-11 px-6 font-semibold text-slate-500 hover:text-slate-700 dark:text-slate-400">
+                    <Button
+                        variant="ghost"
+                        className="h-11 px-6 font-semibold text-slate-500 hover:text-slate-700 dark:text-slate-400"
+                        startIcon={<X size={18} />}
+                    >
                         Cancelar
                     </Button>
                 </Link>

@@ -10,6 +10,8 @@ import '@byteflow-ui/button/index.css';
 import '@byteflow-ui/input/index.css';
 import '@byteflow-ui/alert/index.css';
 
+import { Mail } from 'lucide-react';
+
 export function ForgotPasswordForm() {
     const [state, action, isPending] = useActionState(forgotPasswordAction, undefined);
 
@@ -51,6 +53,7 @@ export function ForgotPasswordForm() {
                         variant="primary"
                         className="w-full h-11 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] transition-all"
                         isLoading={isPending}
+                        startIcon={<Mail size={18} />}
                     >
                         Enviar enlace
                     </Button>

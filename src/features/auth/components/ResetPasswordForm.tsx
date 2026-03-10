@@ -11,6 +11,8 @@ import '@byteflow-ui/button/index.css';
 import '@byteflow-ui/input/index.css';
 import '@byteflow-ui/alert/index.css';
 
+import { Key } from 'lucide-react';
+
 export function ResetPasswordForm() {
     const searchParams = useSearchParams();
     const token = searchParams.get('token') || '';
@@ -106,6 +108,7 @@ export function ResetPasswordForm() {
                         variant="primary"
                         className="w-full h-11 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] transition-all"
                         isLoading={isPending}
+                        startIcon={<Key size={18} />}
                     >
                         Actualizar contraseña
                     </Button>

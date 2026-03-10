@@ -10,6 +10,8 @@ import '@byteflow-ui/button/index.css';
 import '@byteflow-ui/input/index.css';
 import '@byteflow-ui/alert/index.css';
 
+import { LogIn } from 'lucide-react';
+
 export function LoginForm() {
     const [state, action, isPending] = useActionState(loginAction, undefined);
 
@@ -72,6 +74,7 @@ export function LoginForm() {
                 variant="primary"
                 className="w-full h-11 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] transition-all"
                 isLoading={isPending}
+                startIcon={<LogIn size={18} />}
             >
                 Iniciar sesión
             </Button>

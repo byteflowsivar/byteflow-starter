@@ -108,17 +108,11 @@ function SidebarFooterContent({ session }: { session: { email: string } }) {
                     <Button
                         type="submit"
                         variant="ghost"
-                        className={`w-full !flex !flex-row !items-center ${isCollapsed ? '!justify-center' : '!justify-start'} text-error hover:bg-error/10 px-4 h-11 transition-all duration-200`}
+                        className={`w-full !flex !flex-row !items-center ${isCollapsed ? '!justify-center' : '!justify-start'} text-error hover:bg-error/10 px-4 h-11 transition-all duration-200 font-bold text-sm`}
                         title="Cerrar sesión"
+                        startIcon={<LogOut size={20} className="flex-shrink-0" />}
                     >
-                        <div className={`flex flex-row items-center ${isCollapsed ? 'justify-center' : 'justify-start'} gap-3 w-full`}>
-                            <LogOut size={20} className="flex-shrink-0" />
-                            {!isCollapsed && (
-                                <span className="truncate whitespace-nowrap animate-in fade-in duration-300 font-bold text-sm">
-                                    Cerrar sesión
-                                </span>
-                            )}
-                        </div>
+                        {!isCollapsed && "Cerrar sesión"}
                     </Button>
                 </form>
             </div>

@@ -18,6 +18,18 @@ const config: Config = {
                     dark: "#1e40af",
                     foreground: "#ffffff",
                 },
+                error: {
+                    DEFAULT: "#ef4444",
+                    hover: "#dc2626",
+                },
+                success: {
+                    DEFAULT: "#10b981",
+                    hover: "#059669",
+                },
+                warning: {
+                    DEFAULT: "#f59e0b",
+                    hover: "#d97706",
+                },
             },
         },
     },

@@ -2,6 +2,7 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import Link from 'next/link';
 import { Button } from '@byteflow-ui/button';
 import '@byteflow-ui/button/index.css';
+import { LayoutDashboard, Rocket, Play } from 'lucide-react';
 
 export default function LandingPage() {
   return (
@@ -9,6 +10,7 @@ export default function LandingPage() {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/50 dark:bg-slate-950/50 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* ... */}
           <div className="flex items-center gap-2 group cursor-pointer">
             <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-xl shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform">
               B
@@ -19,7 +21,11 @@ export default function LandingPage() {
           <div className="flex items-center gap-6">
             <ThemeToggle />
             <Link href="/admin/login">
-              <Button variant="primary" className="font-bold px-6 shadow-lg shadow-primary/20">
+              <Button
+                variant="primary"
+                className="font-bold px-6 shadow-lg shadow-primary/20"
+                startIcon={<LayoutDashboard size={18} />}
+              >
                 Entrar al Panel
               </Button>
             </Link>
@@ -29,20 +35,13 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <main className="relative pt-32 pb-20 px-6 overflow-hidden">
-        {/* Decorative Background Elements */}
+        {/* Decorative Background Elements ... */}
         <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -mr-64 animate-pulse" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px] -ml-48" />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col items-center text-center space-y-8 py-20">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider border border-primary/20">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              Nueva Versión 2.0
-            </div>
-
+            {/* ... */}
             <h1 className="text-5xl lg:text-7xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1]">
               Domina tus datos con <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-500">Precisión Quirúrgica</span>
@@ -54,11 +53,19 @@ export default function LandingPage() {
 
             <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
               <Link href="/admin/login">
-                <Button variant="primary" className="h-14 px-10 text-lg font-black shadow-xl shadow-primary/30 hover:shadow-primary/40 active:scale-95 transition-all">
+                <Button
+                  variant="primary"
+                  className="h-14 px-10 text-lg font-black shadow-xl shadow-primary/30 hover:shadow-primary/40 active:scale-95 transition-all"
+                  startIcon={<Rocket size={20} />}
+                >
                   Comienza Gratis Ahora
                 </Button>
               </Link>
-              <Button variant="ghost" className="h-14 px-8 text-slate-600 dark:text-slate-300 font-bold hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">
+              <Button
+                variant="ghost"
+                className="h-14 px-8 text-slate-600 dark:text-slate-300 font-bold hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
+                startIcon={<Play size={20} />}
+              >
                 Ver demo interactiva
               </Button>
             </div>

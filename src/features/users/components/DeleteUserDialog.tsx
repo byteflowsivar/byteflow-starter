@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@byteflow-ui/dialog';
 import { Button } from '@byteflow-ui/button';
 import { deleteUserAction } from '../actions/delete-user.action';
+import { ActionResult } from '../types';
+import { Trash2, X } from 'lucide-react';
 import '@byteflow-ui/dialog/index.css';
 import '@byteflow-ui/button/index.css';
 
@@ -61,15 +63,17 @@ export function DeleteUserDialog({ userId, userName, trigger }: DeleteUserDialog
                         variant="ghost"
                         onClick={() => setIsOpen(false)}
                         disabled={isPending}
-                        className="dark:text-slate-300"
+                        className="dark:text-slate-300 font-bold"
+                        startIcon={<X size={18} />}
                     >
                         Cancelar
                     </Button>
                     <Button
-                        variant="primary"
+                        variant="ghost"
                         onClick={handleDelete}
                         isLoading={isPending}
-                        className="!bg-error !text-white hover:!bg-error/90 border-none shadow-lg shadow-error/20"
+                        className="!bg-red-600 !text-white hover:!bg-red-700 !border-none shadow-lg shadow-red-500/40 font-bold px-6"
+                        startIcon={<Trash2 size={18} />}
                     >
                         Confirmar eliminación
                     </Button>
