@@ -6,7 +6,7 @@ import { Button } from '@byteflow-ui/button';
 import { deleteUserAction } from '../actions/delete-user.action';
 import { ActionResult } from '../types';
 import { Trash2, X } from 'lucide-react';
-import { useToast } from '@byteflow-ui/toast';
+import { toastBus } from '@/lib/toast-bus';
 import '@byteflow-ui/dialog/index.css';
 import '@byteflow-ui/button/index.css';
 
@@ -17,7 +17,6 @@ interface DeleteUserDialogProps {
 }
 
 export function DeleteUserDialog({ userId, userName, trigger }: DeleteUserDialogProps) {
-    const { toast } = useToast();
     const [isOpen, setIsOpen] = useState(false);
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -28,14 +27,12 @@ export function DeleteUserDialog({ userId, userName, trigger }: DeleteUserDialog
         try {
             const result = await deleteUserAction(userId);
             if (result.success) {
-                console.log('DeleteUserDialog: Success, showing toast:', result.message);
-                toast({
+                toastBus.publish({
                     title: 'Usuario eliminado',
                     description: result.message,
                     variant: 'success'
                 });
-                // Delay closing dialog slightly to ensure the toast portal mounts
-                setTimeout(() => setIsOpen(false), 100);
+                setIsOpen(false);
             } else {
                 setError(result.message || 'Error al eliminar el usuario');
             }

@@ -7,7 +7,7 @@ import { Input } from '@byteflow-ui/input';
 import { Label } from '@byteflow-ui/label';
 import { Alert, AlertTitle, AlertDescription } from '@byteflow-ui/alert';
 import { Combobox, ComboboxOption } from '@byteflow-ui/combobox';
-import { useToast } from '@byteflow-ui/toast';
+import { toastBus } from '@/lib/toast-bus';
 import { UserListItem, ActionResult } from '../types';
 import Link from 'next/link';
 import { Save, X } from 'lucide-react';
@@ -32,30 +32,23 @@ const roleOptions: ComboboxOption[] = [
 
 export function UserForm({ user, action }: UserFormProps) {
     const router = useRouter();
-    const { toast } = useToast();
     const [state, formAction, isPending] = useActionState(action, undefined);
     const [selectedRole, setSelectedRole] = useState(user?.role || 'user');
     const [isActive, setIsActive] = useState(user ? user.isActive : true);
 
     useEffect(() => {
         if (state?.success && state?.message) {
-            console.log('UserForm: Success state detected, showing toast:', state.message);
-            toast({
+            toastBus.publish({
                 title: user ? 'Usuario actualizado' : 'Usuario creado',
                 description: state.message,
                 variant: 'success'
             });
 
-            // If it's a new user, redirect after a short delay to see result
             if (!user) {
-                const timer = setTimeout(() => {
-                    console.log('UserForm: Redirecting to list...');
-                    router.push('/admin/users');
-                }, 3000); // Increased to 3 seconds to ensure visibility
-                return () => clearTimeout(timer);
+                router.push('/admin/users');
             }
         }
-    }, [state, toast, user, router]);
+    }, [state, user, router]);
 
     return (
         <form action={formAction} className="space-y-8 max-w-2xl">
