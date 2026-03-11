@@ -39,6 +39,7 @@ export function UserForm({ user, action }: UserFormProps) {
 
     useEffect(() => {
         if (state?.success && state?.message) {
+            console.log('UserForm: Success state detected, showing toast:', state.message);
             toast({
                 title: user ? 'Usuario actualizado' : 'Usuario creado',
                 description: state.message,
@@ -48,8 +49,9 @@ export function UserForm({ user, action }: UserFormProps) {
             // If it's a new user, redirect after a short delay to see result
             if (!user) {
                 const timer = setTimeout(() => {
+                    console.log('UserForm: Redirecting to list...');
                     router.push('/admin/users');
-                }, 1500);
+                }, 3000); // Increased to 3 seconds to ensure visibility
                 return () => clearTimeout(timer);
             }
         }

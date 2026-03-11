@@ -47,6 +47,6 @@ export async function updateUserAction(
     revalidatePath('/admin/users');
     return {
         success: true,
-        message: 'información actualizada correctamente',
+        message: 'Información actualizada correctamente',
     };
 }
