@@ -53,8 +53,8 @@ export function UsersDataTable({ users }: UsersDataTableProps) {
             header: 'Rol',
             accessorKey: 'role',
             cell: (value) => (
-                <span className="text-slate-700 dark:text-slate-300 font-medium capitalize">
-                    {value === 'admin' ? 'Manager' : 'Developer'}
+                <span className="text-slate-700 dark:text-slate-300 font-medium">
+                    {value === 'admin' ? 'Administrador' : 'Usuario'}
                 </span>
             )
         },
