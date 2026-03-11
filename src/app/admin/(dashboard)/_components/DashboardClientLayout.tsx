@@ -13,7 +13,9 @@ import {
 import { Button } from '@byteflow-ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { logoutAction } from '@/features/auth/actions/logout.action';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useActionState, useEffect } from 'react';
+import { toastBus } from '@/lib/toast-bus';
 import Link from 'next/link';
 import {
     LayoutDashboard,
@@ -93,7 +95,20 @@ function SidebarNavigation() {
 
 // Subcomponente footer con acceso al estado del sidebar
 function SidebarFooterContent({ session }: { session: { email: string } }) {
+    const router = useRouter();
     const { isCollapsed } = useSidebar();
+    const [state, action, isPending] = useActionState(logoutAction, undefined);
+
+    useEffect(() => {
+        if (state?.success) {
+            toastBus.publish({
+                title: 'Sesión cerrada',
+                description: state.message,
+                variant: 'info'
+            });
+            router.push('/admin/login');
+        }
+    }, [state, router]);
 
     return (
         <SidebarFooter className="p-4 border-t border-slate-100 dark:border-slate-800">
@@ -104,13 +119,14 @@ function SidebarFooterContent({ session }: { session: { email: string } }) {
                         <p className="text-sm font-medium text-slate-700 dark:text-slate-300 truncate">{session.email}</p>
                     </div>
                 )}
-                <form action={logoutAction}>
+                <form action={action}>
                     <Button
                         type="submit"
                         variant="ghost"
                         className={`w-full !flex !flex-row !items-center ${isCollapsed ? '!justify-center' : '!justify-start'} text-error hover:bg-error/10 px-4 h-11 transition-all duration-200 font-bold text-sm`}
                         title="Cerrar sesión"
                         startIcon={<LogOut size={20} className="flex-shrink-0" />}
+                        isLoading={isPending}
                     >
                         {!isCollapsed && "Cerrar sesión"}
                     </Button>
