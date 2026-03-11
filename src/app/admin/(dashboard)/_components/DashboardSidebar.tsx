@@ -12,6 +12,9 @@ import {
 import { Button } from '@byteflow-ui/button';
 import { LogOut } from 'lucide-react';
 import { logoutAction } from '@/features/auth/actions/logout.action';
+import { useActionState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { toastBus } from '@/lib/toast-bus';
 import '@byteflow-ui/sidebar/index.css';
 import '@byteflow-ui/button/index.css';
 
@@ -21,6 +24,20 @@ interface DashboardSidebarProps {
 }
 
 export function DashboardSidebar({ email, role }: DashboardSidebarProps) {
+    const router = useRouter();
+    const [state, action, isPending] = useActionState(logoutAction, undefined);
+
+    useEffect(() => {
+        if (state?.success) {
+            toastBus.publish({
+                title: 'Sesión cerrada',
+                description: state.message,
+                variant: 'info'
+            });
+            router.push('/admin/login');
+        }
+    }, [state, router]);
+
     return (
         <Sidebar>
             <SidebarHeader className="h-16 flex items-center px-4 border-b border-slate-100">
@@ -48,12 +65,13 @@ export function DashboardSidebar({ email, role }: DashboardSidebarProps) {
                         <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Sesión</p>
                         <p className="text-sm font-medium text-slate-700 truncate">{email}</p>
                     </div>
-                    <form action={logoutAction}>
+                    <form action={action}>
                         <Button
                             type="submit"
                             variant="ghost"
                             className="w-full justify-start text-error font-semibold"
                             startIcon={<LogOut size={18} />}
+                            isLoading={isPending}
                         >
                             Cerrar sesión
                         </Button>

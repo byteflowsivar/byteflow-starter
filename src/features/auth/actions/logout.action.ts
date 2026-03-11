@@ -5,5 +5,8 @@ import { redirect } from 'next/navigation';
 
 export async function logoutAction() {
     await deleteSession();
-    redirect('/admin/login');
+    return {
+        success: true,
+        message: 'Has cerrado sesión correctamente. ¡Hasta pronto!',
+    };
 }
