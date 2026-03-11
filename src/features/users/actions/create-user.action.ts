@@ -41,5 +41,8 @@ export async function createUserAction(
     }
 
     revalidatePath('/admin/users');
-    redirect('/admin/users');
+    return {
+        success: true,
+        message: 'Usuario creado exitosamente',
+    };
 }

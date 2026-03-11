@@ -1,6 +1,7 @@
 'use client';
 
-import { useActionState, useState } from 'react';
+import { useActionState, useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@byteflow-ui/button';
 import { Input } from '@byteflow-ui/input';
 import { Label } from '@byteflow-ui/label';
@@ -8,7 +9,6 @@ import { Alert, AlertTitle, AlertDescription } from '@byteflow-ui/alert';
 import { Combobox, ComboboxOption } from '@byteflow-ui/combobox';
 import { useToast } from '@byteflow-ui/toast';
 import { UserListItem, ActionResult } from '../types';
-import { useEffect } from 'react';
 import Link from 'next/link';
 import { Save, X } from 'lucide-react';
 import '@byteflow-ui/button/index.css';
@@ -31,6 +31,7 @@ const roleOptions: ComboboxOption[] = [
 ];
 
 export function UserForm({ user, action }: UserFormProps) {
+    const router = useRouter();
     const { toast } = useToast();
     const [state, formAction, isPending] = useActionState(action, undefined);
     const [selectedRole, setSelectedRole] = useState(user?.role || 'user');
@@ -43,8 +44,16 @@ export function UserForm({ user, action }: UserFormProps) {
                 description: state.message,
                 variant: 'success'
             });
+
+            // If it's a new user, redirect after a short delay to see result
+            if (!user) {
+                const timer = setTimeout(() => {
+                    router.push('/admin/users');
+                }, 1500);
+                return () => clearTimeout(timer);
+            }
         }
-    }, [state, toast, user]);
+    }, [state, toast, user, router]);
 
     return (
         <form action={formAction} className="space-y-8 max-w-2xl">
