@@ -5,12 +5,10 @@ import { useRouter } from 'next/navigation';
 import { loginAction } from '../actions/login.action';
 import { Button } from '@byteflow-ui/button';
 import { Input } from '@byteflow-ui/input';
-import { Alert, AlertTitle, AlertDescription } from '@byteflow-ui/alert';
 import { toastBus } from '@/lib/toast-bus';
 import Link from 'next/link';
 import '@byteflow-ui/button/index.css';
 import '@byteflow-ui/input/index.css';
-import '@byteflow-ui/alert/index.css';
 
 import { LogIn } from 'lucide-react';
 
@@ -48,14 +46,6 @@ export function LoginForm() {
                 </p>
             </div>
 
-            {state?.message && !state.success && (
-                <div className="animate-in fade-in slide-in-from-top-2 duration-300">
-                    <Alert variant="error">
-                        <AlertTitle>Error de acceso</AlertTitle>
-                        <AlertDescription>{state.message}</AlertDescription>
-                    </Alert>
-                </div>
-            )}
 
             <div className="space-y-4">
                 <Input
