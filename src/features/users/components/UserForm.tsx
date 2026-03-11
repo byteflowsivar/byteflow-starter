@@ -69,13 +69,14 @@ export function UserForm({ user, action }: UserFormProps) {
                 <div className="space-y-4">
                     <div className="space-y-2">
                         <Label>Rol en la plataforma</Label>
-                        <div onClick={(e) => e.stopPropagation()}>
+                        <div className="w-full flex [&_>_div]:w-full">
                             <Combobox
                                 options={roleOptions}
                                 value={selectedRole}
                                 onValueChange={(val) => setSelectedRole(val as 'user' | 'admin')}
                                 placeholder="Selecciona un rol"
                                 className="w-full h-11 dark:bg-slate-900 dark:border-slate-800 dark:text-white"
+                                contentClassName="!w-[var(--bf-popover-anchor-width)] min-w-[var(--bf-popover-anchor-width)]"
                             />
                         </div>
                         <input type="hidden" name="role" value={selectedRole} />
