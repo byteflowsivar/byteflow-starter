@@ -6,7 +6,9 @@ import { Input } from '@byteflow-ui/input';
 import { Label } from '@byteflow-ui/label';
 import { Alert, AlertTitle, AlertDescription } from '@byteflow-ui/alert';
 import { Combobox, ComboboxOption } from '@byteflow-ui/combobox';
+import { useToast } from '@byteflow-ui/toast';
 import { UserListItem, ActionResult } from '../types';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { Save, X } from 'lucide-react';
 import '@byteflow-ui/button/index.css';
@@ -29,9 +31,20 @@ const roleOptions: ComboboxOption[] = [
 ];
 
 export function UserForm({ user, action }: UserFormProps) {
+    const { toast } = useToast();
     const [state, formAction, isPending] = useActionState(action, undefined);
     const [selectedRole, setSelectedRole] = useState(user?.role || 'user');
     const [isActive, setIsActive] = useState(user ? user.isActive : true);
+
+    useEffect(() => {
+        if (state?.success && state?.message) {
+            toast({
+                title: user ? 'Usuario actualizado' : 'Usuario creado',
+                description: state.message,
+                variant: 'success'
+            });
+        }
+    }, [state, toast, user]);
 
     return (
         <form action={formAction} className="space-y-8 max-w-2xl">

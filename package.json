@@ -21,6 +21,7 @@
     "@byteflow-ui/label": "^1.0.1",
     "@byteflow-ui/popover": "^1.0.2",
     "@byteflow-ui/sidebar": "^1.0.1",
+    "@byteflow-ui/toast": "^1.0.1",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.6.2",
     "drizzle-orm": "^0.45.1",
