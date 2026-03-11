@@ -30,5 +30,8 @@ export async function loginAction(prevState: any, formData: FormData): Promise<A
 
     await createSession(user.id, user.email, user.role);
 
-    redirect('/admin/dashboard');
+    return {
+        success: true,
+        message: 'Bienvenido nuevamente al panel administrativo',
+    };
 }

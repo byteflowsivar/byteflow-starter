@@ -1,10 +1,12 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { loginAction } from '../actions/login.action';
 import { Button } from '@byteflow-ui/button';
 import { Input } from '@byteflow-ui/input';
 import { Alert, AlertTitle, AlertDescription } from '@byteflow-ui/alert';
+import { toastBus } from '@/lib/toast-bus';
 import Link from 'next/link';
 import '@byteflow-ui/button/index.css';
 import '@byteflow-ui/input/index.css';
@@ -13,7 +15,27 @@ import '@byteflow-ui/alert/index.css';
 import { LogIn } from 'lucide-react';
 
 export function LoginForm() {
+    const router = useRouter();
     const [state, action, isPending] = useActionState(loginAction, undefined);
+
+    useEffect(() => {
+        if (state) {
+            if (state.success) {
+                toastBus.publish({
+                    title: 'Sesión iniciada',
+                    description: state.message,
+                    variant: 'success'
+                });
+                router.push('/admin/dashboard');
+            } else if (state.message) {
+                toastBus.publish({
+                    title: 'Error de acceso',
+                    description: state.message,
+                    variant: 'error'
+                });
+            }
+        }
+    }, [state, router]);
 
     return (
         <form action={action} className="space-y-6 w-full max-w-sm mx-auto p-4 lg:p-0">
