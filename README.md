@@ -91,6 +91,18 @@ src/
 
 ---
 
+## 🐳 Docker
+
+Si estás construyendo la imagen de Docker en un entorno local (como macOS) para desplegarla en Linux, debes asegurarte de que el `package-lock.json` incluya las dependencias nativas para Linux. Ejecuta el siguiente comando en tu máquina local antes de construir la imagen:
+
+```bash
+npm install --save-optional --os=linux --cpu=arm64 --os=linux --cpu=x64
+```
+
+Esto evita errores de compatibilidad con módulos nativos (como `lightningcss` o `sharp`) durante el build de Docker.
+
+---
+
 ## 🔄 Migración a PostgreSQL
 
 Solo necesitas modificar `src/db/index.ts`. El resto del código no cambia:
